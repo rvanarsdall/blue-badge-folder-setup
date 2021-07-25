@@ -19,3 +19,9 @@
 ## Workout-Logbook
 
 - Workout-Logbook: A project that will be done by you for an assignment. It will have a backend and frontend for you to complete. All the work will be done in that folder
+
+## For pushing to github
+
+- git add .
+- git commit -m "NAME OF MODULE YOU JUST COMPLETED"
+- git push origin main
