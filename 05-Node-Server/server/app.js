@@ -1,18 +1,19 @@
+require("dotenv").config();
 let express = require('express');
 let app = express();
-require("dotenv").config();
 let sequelize = require('./db');
 
-let journal = require('./controllers/journalcontroller');
 
 let user = require('./controllers/usercontroller');
+let journal = require('./controllers/journalcontroller');
 
 sequelize.sync();
 //sequelize.sync({force: true})
 app.use(express.json())
 app.use('/journal', journal)
 app.use('/user', user)
+// app.use(require('./middleware/validate-session'))
 
-app.listen(4008, function() {
+app.listen(3000, function() {
         console.log('App is listening on port 3001');
 })
