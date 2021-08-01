@@ -1,30 +1,36 @@
 require("dotenv").config();
 let express = require("express");
-const app = express();
-const sequelize = require("./db");
+let app = express();
+let sequelize = require("./db");
+
 let journal = require("./controllers/journalcontroller");
 let user = require("./controllers/usercontroller");
-sequelize.sync();
 
-app.use(express.json());
+sequelize.sync();
+//sequelize.sync({force: true})
+
+/*************************************************** */
 
 // app.use("/test", function (req, res) {
-//   res.send("This is a test route");
+//   res.send("This is a message from the test endpoint on the server!");
 // });
 
 // app.use("/jaime", function (req, res) {
 //   res.send("My name is Jaime and I am 44 years old!");
 // });
+/******************************************************* */
 
-//Have endpoint of journal/practice
+//Have endpoint of journal/practice...practice is in journalcontroller
 //send a response from that endpoint (This is a practice route)
+
+app.use(express.json());
+
+app.use("/user", user);
 
 app.use("/journal", journal);
 
 app.use("/about", journal);
 
-app.use("/user", user);
-
 app.listen(3000, function () {
-  console.log("app is listening on port 3000");
+  console.log("App is listening on port 3000!");
 });

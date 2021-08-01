@@ -39,9 +39,7 @@ router.post("/create", function (req, res) {
         sessionToken: token,
       });
     })
-    .catch(function (err) {
-      res.status(500).json({ error: err });
-    });
+    .catch((err) => res.status(500).json({ error: err }));
 });
 
 /* *********************************
@@ -55,38 +53,23 @@ router.post("/create", function (req, res) {
 //if we find one return user info and if user doesn't exist return "user does not exist"
 
 router.post("/login", function (req, res) {
-  User.findOne({
-    where: {
-      email: req.body.user.email,
-    },
+  User.create({
+    email: req.body.user.email,
+    password: bcrypt.hashSync(req.body.user.password, 13),
   })
     .then(function loginSuccess(user) {
-      if (user) {
-        bcrypt.compare(
-          req.body.user.password,
-          user.password,
-          function (err, matches) {
-            if (matches) {
-              let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-                expiresIn: 60 * 60 * 24,
-              });
-
-              res.status(200).json({
-                user: user,
-                message: "You have logged in successfully",
-                sessionToken: token,
-              });
-            } else {
-              res.status(502).send({ error: "Login Failed" });
-            }
-          }
-        );
-      } else {
-        res.status(500).json({ error: "User does not exist." });
-      }
+      let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+        expiresIn: 60 * 60 * 24,
+      });
+      res.json({
+        user: user,
+        message: "User successfully logged in!",
+        sessionToken: token,
+      });
     })
     .catch(function (err) {
       res.status(500).json({ error: err });
     });
 });
+
 module.exports = router;
