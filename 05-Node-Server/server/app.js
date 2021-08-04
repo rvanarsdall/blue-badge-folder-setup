@@ -3,8 +3,8 @@ let express = require("express");
 let app = express();
 let sequelize = require("./db");
 
-let journal = require("./controllers/journalcontroller");
 let user = require("./controllers/usercontroller");
+let journal = require("./controllers/journalcontroller");
 
 sequelize.sync();
 //sequelize.sync({force: true})
@@ -22,6 +22,8 @@ sequelize.sync();
 
 //Have endpoint of journal/practice...practice is in journalcontroller
 //send a response from that endpoint (This is a practice route)
+
+app.use(require("./middleware/headers"));
 
 app.use(express.json());
 
