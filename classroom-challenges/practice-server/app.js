@@ -1,11 +1,14 @@
 let express = require("express");
 let app = express();
+let testController = require("./controllers/testcontroller");
+let calculatorController = require("./controllers/calculatorcontroller");
 
-app.use("/test", function (req, res) {
-  let response = { message: "This is a test" };
+app.use(express.json());
 
-  res.json(response);
-});
+app.use("/test", testController);
+
+app.use("/calc", calculatorController);
+
 app.listen(3000, function () {
   console.log("app is listening on port 3000");
 });
