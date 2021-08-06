@@ -5,7 +5,7 @@ const validateSession = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(403).send({ auth: false, message: "notoken proveide" });
+    return res.status(403).send({ auth: false, message: "No token provided" });
   } else {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {
       if (!err && decodeToken) {
@@ -28,3 +28,5 @@ const validateSession = (req, res, next) => {
     });
   }
 };
+
+module.exports = validateSession;

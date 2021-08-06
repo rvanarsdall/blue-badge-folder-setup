@@ -23,7 +23,6 @@ router.post("/register", function (req, res) {
 });
 
 //user login
-
 router.post("/login", function (req, res) {
   User.findOne({
     where: {
