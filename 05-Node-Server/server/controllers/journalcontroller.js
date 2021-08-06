@@ -1,16 +1,15 @@
 const { response } = require("express");
-let express = require("express"); //brings in express engine
-let router = express.Router(); //brings in router
+let router = require("express").Router(); //brings in router
 let validateSession = require("../middleware/validate-session");
 let Journal = require("../db").import("../models/journal");
 
-router.get("/practice", validateSession, function (req, res) {
-  res.send("Hey!! This is a practice route!");
-});
+// router.get("/practice", validateSession, function (req, res) {
+//   res.send("Hey!! This is a practice route!");
+// });
 
-router.get("/about", function (req, res) {
-  res.send("This is the about route!");
-});
+// router.get("/about", function (req, res) {
+//   res.send("This is the about route!");
+// });
 
 /* ****************************************
  *************JOURNAL CREATE*************
