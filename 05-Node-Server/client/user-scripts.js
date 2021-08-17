@@ -37,10 +37,12 @@ function userLogin() {
   console.log("userLogin Function Called");
   let userEmail = document.getElementById("emailLogin").value;
   let userPass = document.getElementById("pwdLogin").value;
+  console.log(userEmail, userPass);
+
   let userData = { user: { email: userEmail, password: userPass } };
   console.log(`USERDATA ==> ${userData.user.email} ${userData.user.password}`);
 
-  fetch("http://localhost:3000/user/create", {
+  fetch("http://localhost:3000/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function displayMine() {
     method: "GET",
     headers: new Headers({
       "Content-Type": "application/json",
-      Authorization: accessToken,
+      Authorization: accessToken, //"Authorization"??
     }),
   })
     .then(function (response) {
@@ -89,9 +89,6 @@ function displayMine() {
  ******************************** */
 
 function displayAll() {
-  console.log("displayAll Function Called");
-  // const accessToken = localStorage.getItem("SessionToken");
-
   fetch("http://localhost:3000/journal/", {
     method: "GET",
     headers: new Headers({
